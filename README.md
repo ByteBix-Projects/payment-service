@@ -1,14 +1,27 @@
 # Payment Service
 
-The Payment Service is a microservice in the ride-booking system responsible for handling financial transactions, integrating with payment gateways, and generating receipts.
+The Payment Service handles financial transactions, integrating with payment gateways and generating receipts in the ride-booking system.
 
 ## Key Features
-- **Transaction Processing**: Manages secure payments via multiple methods (cards, wallets).
-- **Receipt Generation**: Creates detailed billing summaries post-ride.
-- **Refund Handling**: Processes refunds or adjustments as needed.
+- Transaction Processing
+- Receipt Generation
+- Refund Handling
+
+## Recommended Tech Stack
+- **Runtime**: Node.js for secure transaction handling [1].
+- **Framework**: Express.js for API endpoints [3].
+- **Payment Gateway**: Stripe or PayPal for processing payments [7].
+- **Database**: MySQL or PostgreSQL for transaction records [1][3].
+
+## System Design Structure
+- **Transaction Processor**: Integrates with Stripe/PayPal for payments.
+- **Receipt Generator**: Creates billing summaries post-ride.
+- **Refund Manager**: Handles refund requests via API.
+- **Storage Layer**: Stores transaction history securely.
+- **Security Module**: Implements encryption for payment data.
 
 ## Architecture Diagram
-```mermaid
+``mermaid
 graph TD
 PS[Payment Service] -->|Notifies Status| NS[Notification Service]
 PS -->|Updates Ride Data| RS[Ride Service]
@@ -18,9 +31,9 @@ AP[Admin Panel] -->|Manages Payments| API
 ```
 
 ## Interaction with Other Services
-The Payment Service ensures smooth financial operations by interacting with:
-- **API Gateway**: Receives payment requests from the Passenger App or Admin Panel for processing.
-- **Ride Service**: Updates ride records with payment status (e.g., paid, pending) after transactions.
-- **Notification Service**: Sends payment confirmation or failure alerts to passengers and drivers.
-- **Admin Panel**: Allows oversight of transactions, refunds, and driver payroll through routed requests.
+The Payment Service manages finances:
+- **API Gateway**: Receives payment requests from clients.
+- **Ride Service**: Updates ride records with payment status.
+- **Notification Service**: Sends payment confirmations.
+- **Admin Panel**: Oversees transactions and refunds.
 
